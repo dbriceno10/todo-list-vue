@@ -14,15 +14,24 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import SweetAlert from './SweetAlert';
 import ToastifyAlert from './ToastAlert';
+
+export interface Data {
+  newTodo: string;
+  todos: string[];
+}
+
+
+
 export default {
   data() {
-    return {
+    const data: Data = {
       newTodo: '',
-      todos: [],
-    };
+      todos: []
+    }
+    return data
   },
   // watch: {
   //   todos(oldValue, newValue) {
@@ -66,7 +75,7 @@ export default {
         ToastifyAlert({ text: 'Tarea Guardada' })
       }
     },
-    removeTodo(index) {
+    removeTodo(index: number) {
       SweetAlert({
         title: 'Eliminar Tarea',
         text: 'Desea eliminar la tarea?',
