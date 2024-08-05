@@ -16,6 +16,7 @@
 
 <script>
 import SweetAlert from './SweetAlert';
+import ToastifyAlert from './ToastAlert';
 export default {
   data() {
     return {
@@ -35,7 +36,7 @@ export default {
   //   console.log('Antes de crear el componente')
   // },
   created() {
-    console.log('Creando el componente')
+    // console.log('Creando el componente')
     this.loadTodos();
   },
   // beforeMount() {
@@ -62,6 +63,7 @@ export default {
         this.todos.push(this.newTodo);
         this.newTodo = '';
         this.saveTodos();
+        ToastifyAlert({ text: 'Tarea Guardada' })
       }
     },
     removeTodo(index) {
@@ -76,6 +78,7 @@ export default {
         if (result.isConfirmed) {
           this.todos.splice(index, 1);
           this.saveTodos();
+          ToastifyAlert({ text: 'Tarea Eliminada', type: 'info' })
         }
       })
 
