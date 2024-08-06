@@ -8,7 +8,7 @@
     <ul>
       <li v-for="(todo, index) in todos" :key="index">
         <div class="liContainer">
-          <p  @click="checkTodo(index)" :class="{ completed: todo.check }">{{ todo.todo }}</p>
+          <p @click="checkTodo(index)" :class="{ completed: todo.check }">{{ todo.todo }}</p>
           <button @click="removeTodo(index)">Eliminar</button>
         </div>
       </li>
