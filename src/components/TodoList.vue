@@ -8,7 +8,7 @@
     <ul>
       <li v-for="(todo, index) in todos" :key="index">
         <div class="liContainer">
-          <p class="todoText">{{ todo }}</p>
+          <p  @click="checkTodo(index)" :class="{ completed: todo.check }">{{ todo.todo }}</p>
           <button @click="removeTodo(index)">Eliminar</button>
         </div>
       </li>
@@ -20,10 +20,16 @@
 import SweetAlert from './SweetAlert';
 import ToastifyAlert from './ToastAlert';
 
-export interface Data {
-  newTodo: string;
-  todos: string[];
+interface Todo {
+  todo: string,
+  check: boolean
 }
+
+interface Data {
+  newTodo: string;
+  todos: Todo[];
+}
+
 
 
 
@@ -77,12 +83,22 @@ export default {
   methods: {
     addTodo() {
       if (this.newTodo.trim() !== '') {
-        this.todos.push(this.newTodo);
+        this.todos.push({ todo: this.newTodo, check: false });
         this.newTodo = '';
         this.saveTodos();
         ToastifyAlert({ text: 'Tarea Guardada' })
       } else {
         ToastifyAlert({ text: 'La tarea debe ser válida', type: 'warning' })
+      }
+    },
+    checkTodo(index: number) {
+      const todo = this.todos?.find(function (e, i) {
+        return i === index
+      })
+      if (todo) {
+        todo.check = !todo.check
+        this.todos[index] = todo
+        this.saveTodos()
       }
     },
     removeTodo(index: number) {
@@ -100,7 +116,6 @@ export default {
           ToastifyAlert({ text: 'Tarea Eliminada', type: 'info' })
         }
       })
-
     },
     saveTodos() {
       localStorage.setItem('todos', JSON.stringify(this.todos));
