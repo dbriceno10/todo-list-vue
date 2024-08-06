@@ -7,8 +7,10 @@
     </form>
     <ul>
       <li v-for="(todo, index) in todos" :key="index">
-        {{ todo }}
-        <button @click="removeTodo(index)">Eliminar</button>
+        <div class="liContainer">
+          <p class="todoText">{{ todo }}</p>
+          <button @click="removeTodo(index)">Eliminar</button>
+        </div>
       </li>
     </ul>
   </div>
@@ -32,6 +34,12 @@ export default {
       todos: []
     }
     return data
+  },
+
+  computed: {
+    todoStyle() {
+      return ''
+    }
   },
   // watch: {
   //   todos(oldValue, newValue) {
@@ -73,6 +81,8 @@ export default {
         this.newTodo = '';
         this.saveTodos();
         ToastifyAlert({ text: 'Tarea Guardada' })
+      } else {
+        ToastifyAlert({ text: 'La tarea debe ser válida', type: 'warning' })
       }
     },
     removeTodo(index: number) {
@@ -105,24 +115,6 @@ export default {
 };
 </script>
 
-<style>
-.todos {
-  max-width: 600px;
-  margin: 0 auto;
-}
-
-form {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 20px;
-}
-
-input {
-  flex: 1;
-  margin-right: 10px;
-}
-
-button {
-  flex-shrink: 0;
-}
+<style lang="scss">
+@import './styles.scss';
 </style>

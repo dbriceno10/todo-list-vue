@@ -1,0 +1,73 @@
+$greenVue: #41b883;
+$blueVue: #35495e;
+$white: #fff;
+$black: #000;
+
+$baseFonts: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica,
+  Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+
+$boxShadow: 0px 9px 16px rgba(159, 162, 191, 0.18),
+  0px 2px 2px rgba(159, 162, 191, 0.32);
+
+body {
+  font-family: $baseFonts;
+}
+
+.todos {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+form {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+input {
+  flex: 1;
+  margin-right: 10px;
+  padding: 10px;
+  border: none;
+  box-shadow: $boxShadow;
+  border-radius: 8px;
+  background-color: #eee;
+}
+
+button {
+  flex-shrink: 0;
+  background-color: $greenVue;
+  padding: 8px 16px;
+  border: none;
+  transition: 0.3s;
+  cursor: pointer;
+  color: $white;
+  border-radius: 8px;
+  &:hover {
+    background-color: $blueVue;
+  }
+}
+
+li {
+  list-style: none;
+}
+
+.liContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px 0;
+  font-size: bold;
+  cursor: pointer;
+  p {
+  margin: 0;
+  }
+}
+
+
+ul {
+  padding: 0;
+  // margin: 10px 0;
+  margin: 0;
+}
