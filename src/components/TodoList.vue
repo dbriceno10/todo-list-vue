@@ -16,70 +16,24 @@
   </div>
 </template>
 
-<script lang="ts">
+<script>
 import SweetAlert from './SweetAlert';
 import ToastifyAlert from './ToastAlert';
-
-interface Todo {
-  todo: string,
-  check: boolean
-}
-
-interface Data {
-  newTodo: string;
-  todos: Todo[];
-}
 
 
 
 
 export default {
   data() {
-    const data: Data = {
+    const data = {
       newTodo: '',
       todos: []
     }
     return data
   },
-
-  computed: {
-    todoStyle() {
-      return ''
-    }
-  },
-  // watch: {
-  //   todos(oldValue, newValue) {
-  //     console.log('oldValue')
-  //     console.log(oldValue)
-  //     console.log('newValue')
-  //     console.log(newValue)
-  //   }
-  // },
-  // beforeCreate() {
-  //   console.log('Antes de crear el componente')
-  // },
   created() {
-    // console.log('Creando el componente')
     this.loadTodos();
   },
-  // beforeMount() {
-  //   console.log('Antes de montar el componente')
-  // },
-  // mounted() {
-  //   console.log('Montando el componente')
-  // },
-  // beforeDestroy() {
-  //   console.log('Antes de destruir el componente')
-  // },
-  // beforeUnmount() {
-  //   console.log('Antes de desmontar el componente')
-  // },
-  // destroyed() {
-  //   console.log('Destruyendo el componente')
-  // },
-  // unmounted() {
-  //   console.log('Desmontando el componente')
-  // },
   methods: {
     addTodo() {
       if (this.newTodo.trim() !== '') {
@@ -91,7 +45,7 @@ export default {
         ToastifyAlert({ text: 'La tarea debe ser válida', type: 'warning' })
       }
     },
-    checkTodo(index: number) {
+    checkTodo(index) {
       const todo = this.todos?.find(function (e, i) {
         return i === index
       })
@@ -101,7 +55,7 @@ export default {
         this.saveTodos()
       }
     },
-    removeTodo(index: number) {
+    removeTodo(index) {
       SweetAlert({
         title: 'Eliminar Tarea',
         text: 'Desea eliminar la tarea?',
